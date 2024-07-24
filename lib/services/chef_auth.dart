@@ -1,10 +1,9 @@
+import 'package:food_ordering_app/models/chef_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-// final url = Uri.parse('https://food-ordering-api-restful.onrender.com/api/register');
-
-Future<http.Response> registerChef(String nombre, String apellido,
-    String telefono, String email, String password) async {
+Future<ChefModel> registerChef(String nombre, String apellido, String telefono,
+    String email, String password) async {
   final response = await http.post(
       Uri.parse('https://food-ordering-api-restful.onrender.com/api/registro'),
       headers: <String, String>{
@@ -20,5 +19,10 @@ Future<http.Response> registerChef(String nombre, String apellido,
 
   print(response.body);
 
-  return response;
+  if (response.statusCode == 201) {
+    return ChefModel.fromJson(
+        jsonDecode(response.body) as Map<String, dynamic>);
+  } else {
+    throw Exception('Failed to create chef.');
+  }
 }

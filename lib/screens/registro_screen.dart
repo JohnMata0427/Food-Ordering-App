@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/layout/autenticacion.dart';
-import 'package:food_ordering_app/services/chef.auth.dart';
-import 'package:http/http.dart' as http;
+import 'package:food_ordering_app/layouts/auth_layout.dart';
+import 'package:food_ordering_app/services/chef_auth.dart';
+import 'package:food_ordering_app/models/chef_model.dart';
 
 class Registro extends StatefulWidget {
   const Registro({super.key});
@@ -24,7 +24,7 @@ class _RegistroState extends State<Registro> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
 
-  Future<http.Response>? response;
+  Future<ChefModel>? _futureChef;
 
   @override
   Widget build(BuildContext context) {
@@ -241,12 +241,14 @@ class _RegistroState extends State<Registro> {
                             if (_formRegistroKey.currentState!.validate() &&
                                 _passwordController.text ==
                                     _confirmPasswordController.text) {
-                              await registerChef(
-                                  _nombreController.text,
-                                  _apellidoController.text,
-                                  _telefonoController.text,
-                                  _emailController.text,
-                                  _passwordController.text);
+                              setState(() {
+                                _futureChef = registerChef(
+                                    _nombreController.text,
+                                    _apellidoController.text,
+                                    _telefonoController.text,
+                                    _emailController.text,
+                                    _passwordController.text);
+                              });
 
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
@@ -277,7 +279,7 @@ class _RegistroState extends State<Registro> {
                                                               FontWeight.w500,
                                                           color: Colors.black)),
                                                   Text(
-                                                    "Los datos han sido guardados exitosamente",
+                                                    "Se ha registrado correctamente",
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         color: Colors.black),
@@ -305,10 +307,6 @@ class _RegistroState extends State<Registro> {
                                 duration: const Duration(seconds: 2),
                                 elevation: 0,
                               ));
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text("Datos incorrectos")));
                             }
                           },
                           style: ElevatedButton.styleFrom(

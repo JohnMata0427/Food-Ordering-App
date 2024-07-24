@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/pages/registro.dart';
+import 'package:food_ordering_app/screens/registro_screen.dart';
 
 void main() {
   runApp(const MainApp());
