@@ -16,12 +16,13 @@ class _RegistroState extends State<Registro> {
   bool isConfirmPasswordVisible = true;
 
   // Variables para los datos del chef
-  String nombre = '';
-  String apellido = '';
-  String telefono = '';
-  String email = '';
-  String password = '';
-  String confirmPassword = '';
+  final TextEditingController _nombreController = TextEditingController();
+  final TextEditingController _apellidoController = TextEditingController();
+  final TextEditingController _telefonoController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   Future<http.Response>? response;
 
@@ -58,11 +59,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                      onChanged: (value) {
-                        setState(() {
-                          nombre = value;
-                        });
-                      },
+                        controller: _nombreController,
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -87,11 +84,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            apellido = value;
-                          });
-                        },
+                        controller: _apellidoController,
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -116,11 +109,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            telefono = value;
-                          });
-                        },
+                        controller: _telefonoController,
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -145,11 +134,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            email = value;
-                          });
-                        },
+                        controller: _emailController,
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -174,11 +159,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            password = value;
-                          });
-                        },
+                        controller: _passwordController,
                         obscureText: isPasswordVisible,
                         obscuringCharacter: "*",
                         validator: (value) =>
@@ -216,11 +197,7 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
-                        onChanged: (value) {
-                          setState(() {
-                            confirmPassword = value;
-                          });
-                        },
+                        controller: _confirmPasswordController,
                         obscureText: isConfirmPasswordVisible,
                         obscuringCharacter: "*",
                         validator: (value) =>
@@ -261,12 +238,15 @@ class _RegistroState extends State<Registro> {
                       children: [
                         ElevatedButton(
                           onPressed: () async {
-                            if (_formRegistroKey.currentState!.validate() && password == confirmPassword) {
-
-                              await registerChef(nombre, apellido, telefono, email, password);
-
-                              // ignore: avoid_print
-                              print(response);
+                            if (_formRegistroKey.currentState!.validate() &&
+                                _passwordController.text ==
+                                    _confirmPasswordController.text) {
+                              await registerChef(
+                                  _nombreController.text,
+                                  _apellidoController.text,
+                                  _telefonoController.text,
+                                  _emailController.text,
+                                  _passwordController.text);
 
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
