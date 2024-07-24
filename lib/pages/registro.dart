@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_ordering_app/layout/autenticacion.dart';
+import 'package:food_ordering_app/services/chef.auth.dart';
+import 'package:http/http.dart' as http;
 
 class Registro extends StatefulWidget {
   const Registro({super.key});
@@ -13,6 +14,16 @@ class _RegistroState extends State<Registro> {
   final _formRegistroKey = GlobalKey<FormState>();
   bool isPasswordVisible = true;
   bool isConfirmPasswordVisible = true;
+
+  // Variables para los datos del chef
+  String nombre = '';
+  String apellido = '';
+  String telefono = '';
+  String email = '';
+  String password = '';
+  String confirmPassword = '';
+
+  Future<http.Response>? response;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +58,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                      onChanged: (value) {
+                        setState(() {
+                          nombre = value;
+                        });
+                      },
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -71,6 +87,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                        onChanged: (value) {
+                          setState(() {
+                            apellido = value;
+                          });
+                        },
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -95,6 +116,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                        onChanged: (value) {
+                          setState(() {
+                            telefono = value;
+                          });
+                        },
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -119,6 +145,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                        onChanged: (value) {
+                          setState(() {
+                            email = value;
+                          });
+                        },
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
@@ -143,6 +174,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                        onChanged: (value) {
+                          setState(() {
+                            password = value;
+                          });
+                        },
                         obscureText: isPasswordVisible,
                         obscuringCharacter: "*",
                         validator: (value) =>
@@ -180,6 +216,11 @@ class _RegistroState extends State<Registro> {
                       height: 20,
                     ),
                     TextFormField(
+                        onChanged: (value) {
+                          setState(() {
+                            confirmPassword = value;
+                          });
+                        },
                         obscureText: isConfirmPasswordVisible,
                         obscuringCharacter: "*",
                         validator: (value) =>
@@ -219,8 +260,15 @@ class _RegistroState extends State<Registro> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: () {
-                            if (_formRegistroKey.currentState!.validate()) {
+                          onPressed: () async {
+                            if (_formRegistroKey.currentState!.validate() && password == confirmPassword) {
+
+                              await registerChef(nombre, apellido, telefono, email, password);
+
+                              // ignore: avoid_print
+                              print(response);
+
+                              // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
                                 content: Stack(
@@ -240,7 +288,7 @@ class _RegistroState extends State<Registro> {
                                             Expanded(
                                               child: Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   Text("Registrado",
                                                       style: TextStyle(
