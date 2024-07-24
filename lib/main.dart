@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/layout/autenticacion.dart';
 import 'package:food_ordering_app/pages/registro.dart';
 
 void main() {
@@ -11,6 +10,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Registro() , debugShowCheckedModeBanner: false,);
+    return const MaterialApp(home: Registro() , debugShowCheckedModeBanner: false,);
   }
 }
