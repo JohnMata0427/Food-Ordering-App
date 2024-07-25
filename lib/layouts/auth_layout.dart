@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AutenticacionLayout extends StatelessWidget {
-  const AutenticacionLayout({super.key , required this.child});
+  const AutenticacionLayout({super.key, required this.child});
 
   final Widget? child;
 
@@ -13,15 +13,30 @@ class AutenticacionLayout extends StatelessWidget {
           elevation: 0,
         ),
         extendBodyBehindAppBar: true,
-        body:  Stack(children: [
+        body: Stack(children: [
           const Image(
-            image: AssetImage("assets/fondo.png"),
+            image: AssetImage("assets/fondo2.jpg"),
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,
-          )
-          ,
-          SafeArea(child: child!)
+          ),
+          SafeArea(
+              child: Column(children: [
+            const Expanded(
+                child: SizedBox(
+              height: 10,
+            )),
+            Expanded(
+                flex: 10,
+                child: Container(
+                    padding: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40))),
+                    child: SingleChildScrollView(child: child!)))
+          ]))
         ]));
   }
 }
