@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/layouts/auth_layout.dart';
-import 'package:food_ordering_app/models/chef_model.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
+import 'package:food_ordering_app/layouts/auth_layout.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class RecuperarPassword extends StatefulWidget {
+  const RecuperarPassword({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RecuperarPassword> createState() => _RecuperarPasswordState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final _formRegistroKey = GlobalKey<FormState>();
-  bool isPasswordVisible = true;
-  // Variables para los datos del chef
+class _RecuperarPasswordState extends State<RecuperarPassword> {
 
+  final _formRegistroKey=GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  Future<Object>? _respuesta;
+  Future <Object>? _respuesta;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      "INICIO DE SESIÓN",
+                      "RECUPERAR CONTRASEÑA",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                     ),
@@ -76,44 +72,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                        controller: _passwordController,
-                        obscureText: isPasswordVisible,
-                        obscuringCharacter: "*",
-                        validator: (value) =>
-                            value!.isEmpty ? "Campo requerido" : null,
-                        decoration: InputDecoration(
-                          prefixIcon:
-                              const Icon(Icons.lock, color: Colors.black),
-                          suffixIcon: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  isPasswordVisible = !isPasswordVisible;
-                                });
-                              },
-                              icon: Icon(
-                                  isPasswordVisible
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
-                                  color: Colors.black)),
-                          labelText: "Contraseña",
-                          labelStyle: const TextStyle(color: Colors.black),
-                          hintText: "Ingrese su contraseña",
-                          hintStyle: const TextStyle(color: Colors.black38),
-                          border: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10)),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(color: Colors.black),
-                              borderRadius: BorderRadius.circular(10)),
-                          focusedBorder: OutlineInputBorder(
-                              borderSide: const BorderSide(
-                                  color: Color.fromRGBO(248, 207, 27, 1)),
-                              borderRadius: BorderRadius.circular(10)),
-                        )),
-                    const SizedBox(
-                      height: 20,
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -122,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (_formRegistroKey.currentState!.validate()
                             ){
                               setState(() {
-                                _respuesta = loginChef(_emailController.text, _passwordController.text);
+                                _respuesta = recuperarPassword(_emailController.text);
                               });
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
@@ -146,14 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("Inicio de sesión",
+                                                  Text("Correo enviado con éxito",
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           color: Colors.black)),
                                                   Text(
-                                                    "Bienvenido",
+                                                    "Revisa tu bandeja de entrada",
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         color: Colors.black),
@@ -193,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("INGRESAR",
+                              Text("Enviar",
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
@@ -211,34 +169,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text("¿No tienes una cuenta?"),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/registro");
+                        ElevatedButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
                           },
-                          child: const Text(" Registrate",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(199, 53, 9, 1))),
-                        )
+                          style: ElevatedButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 12, horizontal: 70),
+                              backgroundColor:
+                                  Colors.black,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10))),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Volver",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white)),
+                              SizedBox(width: 5),
+                              Icon(Icons.home, color: Colors.white)
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(
-                      height: 5,
+                      height: 10,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("¿Olvidaste tu contraseña?"),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, "/recuperar_contraseña");
-                          },
-                          child: const Text(" Recuperala",
-                              style: TextStyle(
-                                  color: Color.fromRGBO(199, 53, 9, 1))),
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
+import 'package:food_ordering_app/screens/login_screen.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
 import 'package:food_ordering_app/models/chef_model.dart';
 
@@ -340,7 +341,7 @@ class _RegistroState extends State<Registro> {
                         const Text("¿Tienes una cuenta?"),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/login");
                           },
                           child: const Text(" Inicia sesión",
                               style: TextStyle(
@@ -357,7 +358,7 @@ class _RegistroState extends State<Registro> {
                         const Text("¿Olvidaste tu contraseña?"),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pop(context);
+                            Navigator.pushNamed(context, "/recuperar_contraseña");
                           },
                           child: const Text(" Recuperala",
                               style: TextStyle(

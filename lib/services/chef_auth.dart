@@ -42,3 +42,14 @@ Future<Object> loginChef(String email, String password) async {
 
   return jsonDecode(response.body) as Map<String, dynamic>;
 }
+
+Future<Object> recuperarPassword(String email) async {
+  final response = await http.post(
+    Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/recuperarpassword'),
+    body: jsonEncode(<String , String>{
+      'email': email,
+    })
+  );
+  print(response.body);
+  return jsonDecode(response.body) as Map<String , dynamic>;
+}
