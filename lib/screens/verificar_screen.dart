@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/services/chef_auth.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
+import 'package:food_ordering_app/services/chef_auth.dart';
 
-class RecuperarPassword extends StatefulWidget {
-  const RecuperarPassword({super.key});
+class VerificarScreen extends StatefulWidget {
+  const VerificarScreen({super.key});
 
   @override
-  State<RecuperarPassword> createState() => _RecuperarPasswordState();
+  State<VerificarScreen> createState() => _VerificarScreenState();
 }
 
-class _RecuperarPasswordState extends State<RecuperarPassword> {
+class _VerificarScreenState extends State<VerificarScreen> {
+  final _formRegistroKey = GlobalKey<FormState>();
+  final TextEditingController _verificationCode = TextEditingController();
 
-  final _formRegistroKey=GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
   Future <Object>? _respuesta;
 
   @override
   Widget build(BuildContext context) {
     return AutenticacionLayout(
-        child: Column(
+       child: Column(
       children: [
         const Expanded(
             child: SizedBox(
@@ -40,7 +40,7 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      "RECUPERAR CONTRASEÑA",
+                      "VERIFICAR CÓDIGO",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                     ),
@@ -48,15 +48,15 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                       height: 20,
                     ),
                     TextFormField(
-                        controller: _emailController,
+                        controller: _verificationCode,
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
                           prefixIcon:
                               const Icon(Icons.email, color: Colors.black),
-                          labelText: "Correo",
+                          labelText: "Código",
                           labelStyle: const TextStyle(color: Colors.black),
-                          hintText: "Ingrese su correo",
+                          hintText: "XX-XX",
                           hintStyle: const TextStyle(color: Colors.black38),
                           border: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.black),
@@ -77,12 +77,14 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                       children: [
                         ElevatedButton(
                           onPressed: () async {
+                            
                             if (_formRegistroKey.currentState!.validate()
                             ){
                               setState(() {
-                                _respuesta = recuperarPassword(_emailController.text);
+                                _respuesta = codigoVerificacion(_verificationCode.text);
                               });
-                              Navigator.pushNamed(context, "/verificarcodigo");
+                              Navigator.pushNamed(context, '/nuevo_password');
+
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
@@ -105,14 +107,14 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("Correo enviado con éxito",
+                                                  Text("Verificación exitosa",
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           color: Colors.black)),
                                                   Text(
-                                                    "Revisa tu bandeja de entrada",
+                                                    "Ya puedes cambiar tu contraseña",
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         color: Colors.black),
@@ -159,38 +161,6 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                                       color: Colors.black)),
                               SizedBox(width: 5),
                               Icon(Icons.send, color: Colors.black)
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 70),
-                              backgroundColor:
-                                  Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Volver",
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              SizedBox(width: 5),
-                              Icon(Icons.home, color: Colors.white)
                             ],
                           ),
                         ),

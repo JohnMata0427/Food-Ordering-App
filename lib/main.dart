@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/screens/login_screen.dart';
+import 'package:food_ordering_app/screens/nuevo_password.dart';
 import 'package:food_ordering_app/screens/recuperar_password.dart';
 import 'package:food_ordering_app/screens/registro_screen.dart';
+import 'package:food_ordering_app/screens/verificar_screen.dart';
 
 void main() {
   runApp(const MainApp());
@@ -19,7 +21,9 @@ class MainApp extends StatelessWidget {
       routes: {
         "/registro": (context) => const Registro(),
         "/login": (context) => const LoginScreen(),
-        "/recuperar_contraseña": (context) => const RecuperarPassword()
+        "/recuperar_contraseña": (context) => const RecuperarPassword(),
+        "/verificarcodigo": (context) => const VerificarScreen(),
+        "/nuevo_password": (context) => const NuevoPassword()
       },
     );
   }

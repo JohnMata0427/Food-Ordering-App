@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:food_ordering_app/models/chef_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -46,10 +47,42 @@ Future<Object> loginChef(String email, String password) async {
 Future<Object> recuperarPassword(String email) async {
   final response = await http.post(
     Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/recuperarpassword'),
+    headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+    },
     body: jsonEncode(<String , String>{
       'email': email,
     })
   );
   print(response.body);
   return jsonDecode(response.body) as Map<String , dynamic>;
+}
+
+Future<Object> codigoVerificacion(String verificationCode) async {
+  final response = await http.post(
+    Uri.parse('https://food-ordering-api-restful.onrender.com/api/verificarcodigo'),
+    headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String , String>{
+    'verificationCode': verificationCode.toString(),
+    })
+  );
+  print(response.body);
+  return jsonDecode(response.body) as Map<String, dynamic>;
+}
+
+Future<Object> nuevoPassword(String password, String confirPassword) async {
+  final response = await http.put(
+    Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/nuevopassword'),
+    headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String , String>{
+      'password': password,
+      'confirPassword': confirPassword
+    })
+  );
+  print(response.body);
+  return jsonDecode(response.body) as Map<String, dynamic>;
 }

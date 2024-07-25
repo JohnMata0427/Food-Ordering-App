@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:food_ordering_app/services/chef_auth.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
+import 'package:food_ordering_app/services/chef_auth.dart';
 
-class RecuperarPassword extends StatefulWidget {
-  const RecuperarPassword({super.key});
+class NuevoPassword extends StatefulWidget {
+  const NuevoPassword({super.key});
 
   @override
-  State<RecuperarPassword> createState() => _RecuperarPasswordState();
+  State<NuevoPassword> createState() => _NuevoPasswordState();
 }
 
-class _RecuperarPasswordState extends State<RecuperarPassword> {
+class _NuevoPasswordState extends State<NuevoPassword> {
+  final _formRegistroKey = GlobalKey<FormState>();
+  bool isPasswordVisible = true;
+  bool isConfirmPasswordVisible = true;
 
-  final _formRegistroKey=GlobalKey<FormState>();
-  final TextEditingController _emailController = TextEditingController();
-  Future <Object>? _respuesta;
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
+  Future<Object>? _respuesta;
+
 
   @override
   Widget build(BuildContext context) {
     return AutenticacionLayout(
-        child: Column(
+      child: Column(
       children: [
         const Expanded(
             child: SizedBox(
@@ -40,7 +45,7 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const Text(
-                      "RECUPERAR CONTRASEÑA",
+                      "CAMBIO DE CONTRASEÑA",
                       style:
                           TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                     ),
@@ -48,15 +53,28 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                       height: 20,
                     ),
                     TextFormField(
-                        controller: _emailController,
+                        controller: _passwordController,
+                        obscureText: isPasswordVisible,
+                        obscuringCharacter: "*",
                         validator: (value) =>
                             value!.isEmpty ? "Campo requerido" : null,
                         decoration: InputDecoration(
                           prefixIcon:
-                              const Icon(Icons.email, color: Colors.black),
-                          labelText: "Correo",
+                              const Icon(Icons.lock, color: Colors.black),
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isPasswordVisible = !isPasswordVisible;
+                                });
+                              },
+                              icon: Icon(
+                                  isPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.black)),
+                          labelText: "Contraseña",
                           labelStyle: const TextStyle(color: Colors.black),
-                          hintText: "Ingrese su correo",
+                          hintText: "Ingrese su contraseña",
                           hintStyle: const TextStyle(color: Colors.black38),
                           border: OutlineInputBorder(
                               borderSide: const BorderSide(color: Colors.black),
@@ -72,17 +90,56 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                     const SizedBox(
                       height: 20,
                     ),
+                    TextFormField(
+                        controller: _confirmPasswordController,
+                        obscureText: isConfirmPasswordVisible,
+                        obscuringCharacter: "*",
+                        validator: (value) =>
+                            value!.isEmpty ? "Campo requerido" : null,
+                        decoration: InputDecoration(
+                          prefixIcon:
+                              const Icon(Icons.lock, color: Colors.black),
+                          suffixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  isConfirmPasswordVisible =
+                                      !isConfirmPasswordVisible;
+                                });
+                              },
+                              icon: Icon(
+                                  isConfirmPasswordVisible
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Colors.black)),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          labelText: "Confirmar contraseña",
+                          hintText: "Ingrese nuevamente su contraseña",
+                          hintStyle: const TextStyle(color: Colors.black38),
+                          border: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(10)),
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(color: Colors.black),
+                              borderRadius: BorderRadius.circular(10)),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: const BorderSide(
+                                  color: Color.fromRGBO(248, 207, 27, 1)),
+                              borderRadius: BorderRadius.circular(10)),
+                        )),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton(
                           onPressed: () async {
-                            if (_formRegistroKey.currentState!.validate()
-                            ){
+                            if (_formRegistroKey.currentState!.validate() &&
+                                _passwordController.text ==
+                                    _confirmPasswordController.text) {
                               setState(() {
-                                _respuesta = recuperarPassword(_emailController.text);
+                                _respuesta = nuevoPassword(_passwordController.text, _confirmPasswordController.text);
                               });
-                              Navigator.pushNamed(context, "/verificarcodigo");
+                              Navigator.pushNamed(context, "/login");
+
                               // ignore: use_build_context_synchronously
                               ScaffoldMessenger.of(context)
                                   .showSnackBar(SnackBar(
@@ -105,14 +162,14 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text("Correo enviado con éxito",
+                                                  Text("Cambio de contraseña",
                                                       style: TextStyle(
                                                           fontSize: 18,
                                                           fontWeight:
                                                               FontWeight.w500,
                                                           color: Colors.black)),
                                                   Text(
-                                                    "Revisa tu bandeja de entrada",
+                                                    "Cambio de contraseña exitoso",
                                                     style: TextStyle(
                                                         fontSize: 12,
                                                         color: Colors.black),
@@ -152,45 +209,13 @@ class _RecuperarPasswordState extends State<RecuperarPassword> {
                           child: const Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Enviar",
+                              Text("Confirmar",
                                   style: TextStyle(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.black)),
                               SizedBox(width: 5),
                               Icon(Icons.send, color: Colors.black)
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () async {
-                            Navigator.pop(context);
-                          },
-                          style: ElevatedButton.styleFrom(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 12, horizontal: 70),
-                              backgroundColor:
-                                  Colors.black,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10))),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Volver",
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      fontWeight: FontWeight.w500,
-                                      color: Colors.white)),
-                              SizedBox(width: 5),
-                              Icon(Icons.home, color: Colors.white)
                             ],
                           ),
                         ),
