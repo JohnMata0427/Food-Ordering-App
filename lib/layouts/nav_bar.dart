@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        height: 70,
+        height: 80,
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
