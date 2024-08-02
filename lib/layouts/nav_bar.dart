@@ -12,18 +12,21 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-
-  int pantalla_actual = 0;
-  List pantallas = [Inicio() , Ordenar() , Perfil() , Contacto()];
-  List titulos = ["Inicio","Ordenar","Perfil","Contacto"];
-
+  int pantallaActual = 0;
+  List pantallas = [
+    const Inicio(),
+    const Ordenar(),
+    const Perfil(),
+    const Contacto()
+  ];
+  List titulos = ["Inicio", "Ordenar", "Perfil", "Contacto"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const Drawer(),
       appBar: AppBar(
-        title: Text(titulos[pantalla_actual]),
+        title: Text(titulos[pantallaActual]),
         backgroundColor: Colors.amber,
         actions: [
           Padding(
@@ -42,40 +45,76 @@ class _NavBarState extends State<NavBar> {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           GestureDetector(
-            child: Column(
-              children: [Icon(Icons.home , color: pantalla_actual == 0 ? Colors.amber : Colors.white), Text("Inicio" , style: TextStyle(color: pantalla_actual == 0 ? Colors.amber : Colors.white) )],
-            ),
-            onTap: () { setState(() {
-              pantalla_actual = 0;
-            }); }
-          ),
+              child: Column(
+                children: [
+                  Icon(Icons.home,
+                      color: pantallaActual == 0 ? Colors.amber : Colors.white),
+                  Text("Inicio",
+                      style: TextStyle(
+                          color: pantallaActual == 0
+                              ? Colors.amber
+                              : Colors.white))
+                ],
+              ),
+              onTap: () {
+                setState(() {
+                  pantallaActual = 0;
+                });
+              }),
           GestureDetector(
-            child: Column(
-              children: [Icon(Icons.shopping_cart , color: pantalla_actual == 1 ? Colors.amber : Colors.white), Text("Ordenar" , style: TextStyle(color: pantalla_actual == 1 ? Colors.amber : Colors.white))],
-            ),
-            onTap: () {setState(() {
-              pantalla_actual = 1;
-            });}
-          ),
+              child: Column(
+                children: [
+                  Icon(Icons.shopping_cart,
+                      color: pantallaActual == 1 ? Colors.amber : Colors.white),
+                  Text("Ordenar",
+                      style: TextStyle(
+                          color: pantallaActual == 1
+                              ? Colors.amber
+                              : Colors.white))
+                ],
+              ),
+              onTap: () {
+                setState(() {
+                  pantallaActual = 1;
+                });
+              }),
           GestureDetector(
-            child: Column(
-              children: [Icon(Icons.person , color: pantalla_actual == 2 ? Colors.amber : Colors.white), Text("Perfil" , style: TextStyle(color: pantalla_actual == 2 ? Colors.amber : Colors.white))],
-            ),
-            onTap: () { setState(() {
-              pantalla_actual = 2;
-            });}
-          ),
+              child: Column(
+                children: [
+                  Icon(Icons.person,
+                      color: pantallaActual == 2 ? Colors.amber : Colors.white),
+                  Text("Perfil",
+                      style: TextStyle(
+                          color: pantallaActual == 2
+                              ? Colors.amber
+                              : Colors.white))
+                ],
+              ),
+              onTap: () {
+                setState(() {
+                  pantallaActual = 2;
+                });
+              }),
           GestureDetector(
-            child: Column(
-              children: [Icon(Icons.contact_mail , color: pantalla_actual == 3 ? Colors.amber : Colors.white), Text("Contacto" , style: TextStyle(color: pantalla_actual == 3 ? Colors.amber : Colors.white))],
-            ),
-            onTap: () { setState(() {
-              pantalla_actual = 3;
-            });}
-          )
+              child: Column(
+                children: [
+                  Icon(Icons.contact_mail,
+                      color: pantallaActual == 3 ? Colors.amber : Colors.white),
+                  Text("Contacto",
+                      style: TextStyle(
+                          color: pantallaActual == 3
+                              ? Colors.amber
+                              : Colors.white))
+                ],
+              ),
+              onTap: () {
+                setState(() {
+                  pantallaActual = 3;
+                });
+              })
         ]),
       ),
-      body: pantallas[pantalla_actual],
+      body: pantallas[pantallaActual],
     );
   }
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/nav_bar.dart';
-import 'package:food_ordering_app/screens/login_screen.dart';
-import 'package:food_ordering_app/screens/nuevo_password.dart';
-import 'package:food_ordering_app/screens/recuperar_password.dart';
-import 'package:food_ordering_app/screens/registro_screen.dart';
-import 'package:food_ordering_app/screens/verificar_screen.dart';
+import 'package:food_ordering_app/screens/auth/login_screen.dart';
+import 'package:food_ordering_app/screens/auth/nuevo_password.dart';
+import 'package:food_ordering_app/screens/auth/recuperar_password.dart';
+import 'package:food_ordering_app/screens/auth/registro_screen.dart';
+import 'package:food_ordering_app/screens/auth/verificar_screen.dart';
 
 void main() {
   runApp(const MainApp());
