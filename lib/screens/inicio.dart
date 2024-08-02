@@ -8,84 +8,49 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  final List<String> categorias = ["Comidas", "Bebidas", "Postres"];
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: const Drawer(),
-      appBar: AppBar(
-        title: const Text("Inicio"),
-        backgroundColor: Colors.amber,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 13),
-            child: CircleAvatar(
-              backgroundColor: Colors.amber[200],
-              radius: 20,
-              child: const Icon(Icons.search),
-            ),
-          )
-        ],
+    return Column(children: [
+      Image.asset('assets/Inicio.png', width: double.infinity),
+      const SizedBox(height: 10),
+      const Text("MENÚ"),
+      const SizedBox(height: 10),
+      SizedBox(
+        height: 425,
+        child: ListView.builder(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            scrollDirection: Axis.vertical,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(
+                      context, '/categorias/${categorias[index]}');
+                },
+                child: Container(
+                  margin: const EdgeInsets.symmetric(vertical: 10),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Column(
+                    children: [
+                      Text(categorias[index],
+                          style: const TextStyle(color: Colors.white)),
+                      ClipRRect(
+                        child: Image.asset(
+                          'assets/${categorias[index]}.png',
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              );
+            }),
       ),
-      body: Column(
-        children: [
-          Image.asset('assets/Inicio.png', width: double.infinity),
-          const SizedBox(height: 10),
-          const Text("MENÚ"),
-          const SizedBox(height: 10),
-          Row(
-            children: [
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    const Text("Comidas",
-                        style: TextStyle(color: Colors.white)),
-                    Image.asset(
-                      'assets/Comidas.png',
-                      width: 120,
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    const Text("Bebidas",
-                        style: TextStyle(color: Colors.white)),
-                    Image.asset(
-                      'assets/Bebidas.png',
-                      width: 120,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 10),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Column(
-                  children: [
-                    const Text("Postres",
-                        style: TextStyle(color: Colors.white)),
-                    Image.asset(
-                      'assets/Postres.png',
-                      width: 120,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
-      ),
-    );
+    ]);
   }
 }

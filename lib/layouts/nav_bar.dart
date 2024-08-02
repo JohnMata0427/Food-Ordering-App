@@ -15,11 +15,27 @@ class _NavBarState extends State<NavBar> {
 
   int pantalla_actual = 0;
   List pantallas = [Inicio() , Ordenar() , Perfil() , Contacto()];
+  List titulos = ["Inicio","Ordenar","Perfil","Contacto"];
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const Drawer(),
+      appBar: AppBar(
+        title: Text(titulos[pantalla_actual]),
+        backgroundColor: Colors.amber,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 13),
+            child: CircleAvatar(
+              backgroundColor: Colors.amber[200],
+              radius: 20,
+              child: const Icon(Icons.search),
+            ),
+          )
+        ],
+      ),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
         height: 80,
