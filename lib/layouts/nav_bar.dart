@@ -24,7 +24,11 @@ class _NavBarState extends State<NavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(),
+      drawer: Drawer(
+        child: TextButton(onPressed: () {
+          Navigator.pushNamed(context, '/perfil/actualizar');
+        }, child: const Row(children: [Icon(Icons.person), Text('Actualizar Perfil')])),
+      ),
       appBar: AppBar(
         title: Text(titulos[pantallaActual]),
         backgroundColor: Colors.amber,

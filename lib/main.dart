@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/nav_bar.dart';
+import 'package:food_ordering_app/screens/actualizar_perfil.dart';
 import 'package:food_ordering_app/screens/auth/login_screen.dart';
 import 'package:food_ordering_app/screens/auth/nuevo_password.dart';
 import 'package:food_ordering_app/screens/auth/recuperar_password.dart';
@@ -26,6 +27,7 @@ class MainApp extends StatelessWidget {
         "/verificarcodigo": (context) => const VerificarScreen(),
         "/nuevo_password": (context) => const NuevoPassword(),
         "/inicio": (context) => const NavBar(),
+        "/perfil/actualizar": (context) => const ActualizarPerfil()
       },
     );
   }

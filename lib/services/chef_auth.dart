@@ -46,43 +46,63 @@ Future<Object> loginChef(String email, String password) async {
 
 Future<Object> recuperarPassword(String email) async {
   final response = await http.post(
-    Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/recuperarpassword'),
-    headers: <String, String>{
+      Uri.parse(
+          'https://food-ordering-api-restful.onrender.com/api/chef/recuperarpassword'),
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String , String>{
-      'email': email,
-    })
-  );
+      },
+      body: jsonEncode(<String, String>{
+        'email': email,
+      }));
   print(response.body);
-  return jsonDecode(response.body) as Map<String , dynamic>;
+  return jsonDecode(response.body) as Map<String, dynamic>;
 }
 
 Future<Object> codigoVerificacion(String verificationCode) async {
   final response = await http.post(
-    Uri.parse('https://food-ordering-api-restful.onrender.com/api/verificarcodigo'),
-    headers: <String, String>{
+      Uri.parse(
+          'https://food-ordering-api-restful.onrender.com/api/verificarcodigo'),
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String , String>{
-    'verificationCode': verificationCode.toString(),
-    })
-  );
+      },
+      body: jsonEncode(<String, String>{
+        'verificationCode': verificationCode.toString(),
+      }));
   print(response.body);
   return jsonDecode(response.body) as Map<String, dynamic>;
 }
 
 Future<Object> nuevoPassword(String password, String confirPassword) async {
   final response = await http.put(
-    Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/nuevopassword'),
-    headers: <String, String>{
+      Uri.parse(
+          'https://food-ordering-api-restful.onrender.com/api/chef/nuevopassword'),
+      headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String , String>{
-      'password': password,
-      'confirPassword': confirPassword
-    })
-  );
+      },
+      body: jsonEncode(<String, String>{
+        'password': password,
+        'confirPassword': confirPassword
+      }));
+  print(response.body);
+  return jsonDecode(response.body) as Map<String, dynamic>;
+}
+
+Future<Object> actualizarPerfil(String nombre, String apellido, String telefono,
+    String email, String especialidad, String trayectoria) async {
+  String id = 'Aquí va el ID';
+  final response = await http.put(
+      Uri.parse('https://food-ordering-api-restful.onrender.com/api/chef/$id'),
+      headers: <String, String>{
+        'Content-Type': 'multipart/form-data',
+      },
+      body: jsonEncode(<String, String>{
+        'nombre': nombre,
+        'apellido': apellido,
+        'telefono': telefono,
+        'email': email,
+        'especialidad': especialidad,
+        'trayectoria': trayectoria
+      }));
   print(response.body);
   return jsonDecode(response.body) as Map<String, dynamic>;
 }
