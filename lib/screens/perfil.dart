@@ -40,7 +40,7 @@ class _PerfilState extends State<Perfil> {
               height: 20,
             ),
             const Text(
-              'Li Chang',
+              'Samuel Cuti Calvo',
               style: TextStyle(
                 fontSize: 35,
                 fontWeight: FontWeight.bold,
@@ -50,9 +50,9 @@ class _PerfilState extends State<Perfil> {
               height: 10,
             ),
             const Text(
-                'Chef Li Wei, nacido en Chengdu, es un maestro de la cocina china con más de 20 años de experiencia. Con formación en la Academia Culinaria de Beijing, ha trabajado en restaurantes prestigiosos en Beijing, Shanghai, Guangzhou y Hong Kong. Conocido por su dominio del Pato laqueado de Beijing y su habilidad en dim sum cantoneses, Li Wei combina técnicas tradicionales con innovaciones modernas, creando platos de fusión únicos. Actualmente, es el chef ejecutivo del aclamado restaurante "Dragón Imperial" en Shanghai, donde continúa deleitando a sus comensales con su pasión y creatividad culinaria.'),
+                'Chef Samuel Cuti Calvo, nacido en Chengdu, es un maestro de la cocina china con más de 20 años de experiencia. Con formación en la Academia Culinaria de Beijing, ha trabajado en restaurantes prestigiosos en Beijing, Shanghai, Guangzhou y Hong Kong. Conocido por su dominio del Pato laqueado de Beijing y su habilidad en dim sum cantoneses, Samuel Cuti Calvo combina técnicas tradicionales con innovaciones modernas, creando platos de fusión únicos. Actualmente, es el chef ejecutivo del aclamado restaurante "Dragón Imperial" en Shanghai, donde continúa deleitando a sus comensales con su pasión y creatividad culinaria.'),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             const Text(
               'Especialidades',
@@ -74,6 +74,31 @@ class _PerfilState extends State<Perfil> {
                     leading: const Icon(Icons.restaurant),
                   );
                 }),
+            const SizedBox(
+              height: 20,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/perfil/actualizar');
+                },
+                style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 12, horizontal: 70),
+                    backgroundColor: const Color.fromARGB(255, 248, 207, 27),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Actualizar Perfil",
+                        style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black)),
+                    SizedBox(width: 5),
+                    Icon(Icons.edit, color: Colors.black)
+                  ],
+                )),
           ],
         ),
       ),
