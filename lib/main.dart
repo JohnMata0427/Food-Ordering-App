@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Comida ESFOT",
-      initialRoute: "/inicio",
+      initialRoute: "/login",
       routes: {
         "/registro": (context) => const Registro(),
         "/login": (context) => const LoginScreen(),

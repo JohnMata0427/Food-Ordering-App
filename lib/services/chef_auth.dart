@@ -3,6 +3,8 @@ import 'package:food_ordering_app/models/chef_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 Future<ChefModel> registerChef(String nombre, String apellido, String telefono,
     String email, String password) async {
   final response = await http.post(
@@ -41,6 +43,10 @@ Future<Object> loginChef(String email, String password) async {
 
   print(response.body);
 
+  if (response.statusCode == 200) {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    localStorage.setString("token", jsonDecode(response.body)["token"]);
+  }
   return jsonDecode(response.body) as Map<String, dynamic>;
 }
 

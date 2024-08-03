@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -100,11 +103,12 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    if (_formRegistroKey.currentState!.validate()) {
+                    if (_formRegistroKey.currentState!.validate()) {                      
                       setState(() {
                         _respuesta = loginChef(
-                            _emailController.text, _passwordController.text);
-                      });
+                            _emailController.text, _passwordController.text);                        
+                      });          
+                      Navigator.pushNamed(context, "/inicio");
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Stack(
