@@ -6,6 +6,8 @@ import 'package:food_ordering_app/screens/auth/nuevo_password.dart';
 import 'package:food_ordering_app/screens/auth/recuperar_password.dart';
 import 'package:food_ordering_app/screens/auth/registro_screen.dart';
 import 'package:food_ordering_app/screens/auth/verificar_screen.dart';
+import 'package:food_ordering_app/screens/carrito.dart';
+import 'package:food_ordering_app/screens/historial.dart';
 
 void main() {
   runApp(const MainApp());
@@ -27,7 +29,9 @@ class MainApp extends StatelessWidget {
         "/verificarcodigo": (context) => const VerificarScreen(),
         "/nuevo_password": (context) => const NuevoPassword(),
         "/inicio": (context) => const NavBar(),
-        "/perfil/actualizar": (context) => const ActualizarPerfil()
+        "/perfil/actualizar": (context) => const ActualizarPerfil(),
+        "/historial": (context) => const Historial(),
+        "/carrito": (context) => const Carrito(),
       },
     );
   }

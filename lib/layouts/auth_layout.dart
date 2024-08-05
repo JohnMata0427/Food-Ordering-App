@@ -15,7 +15,7 @@ class AutenticacionLayout extends StatelessWidget {
         extendBodyBehindAppBar: true,
         body: Stack(children: [
           const Image(
-            image: AssetImage("assets/fondo2.jpg"),
+            image: AssetImage("assets/fondo.jpg"),
             width: double.infinity,
             height: double.infinity,
             fit: BoxFit.cover,

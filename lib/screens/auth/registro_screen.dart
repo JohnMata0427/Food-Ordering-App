@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
-import 'package:food_ordering_app/screens/auth/login_screen.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
 import 'package:food_ordering_app/models/chef_model.dart';
 

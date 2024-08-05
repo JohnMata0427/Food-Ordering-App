@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:food_ordering_app/models/chef_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<ChefModel> registerChef(String nombre, String apellido, String telefono,
@@ -93,6 +91,19 @@ Future<Object> nuevoPassword(String password, String confirPassword) async {
   return jsonDecode(response.body) as Map<String, dynamic>;
 }
 
+Future perfil() async {
+  SharedPreferences localStorage = await SharedPreferences.getInstance();
+  
+  final response = await http.get(
+      Uri.parse('https://food-ordering-api-restful.onrender.com/api/perfil'),
+      headers: <String, String>{
+        'Content-Type': 'multipart/form-data',
+        'Authorization': 'Bearer ${localStorage.getString('token')}'
+      });
+
+  return jsonDecode(response.body);
+}
+
 Future<Object> actualizarPerfil(String nombre, String apellido, String telefono,
     String email, String especialidad, String trayectoria) async {
   String id = 'Aquí va el ID';
@@ -108,6 +119,22 @@ Future<Object> actualizarPerfil(String nombre, String apellido, String telefono,
         'email': email,
         'especialidad': especialidad,
         'trayectoria': trayectoria
+      }));
+  return jsonDecode(response.body) as Map<String, dynamic>;
+}
+
+Future<Object> contacto(
+    String nombre, String email, String asunto, String mensaje) async {
+  final response = await http.put(
+      Uri.parse('https://food-ordering-api-restful.onrender.com/api/contacto'),
+      headers: <String, String>{
+        'Content-Type': 'multipart/form-data',
+      },
+      body: jsonEncode(<String, String>{
+        'nombre': nombre,
+        'email': email,
+        'asunto': asunto,
+        'mensaje': mensaje
       }));
   print(response.body);
   return jsonDecode(response.body) as Map<String, dynamic>;

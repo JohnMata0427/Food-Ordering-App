@@ -19,6 +19,7 @@ class _ActualizarPerfilState extends State<ActualizarPerfil> {
   final TextEditingController _especialidadController = TextEditingController();
   final TextEditingController _trayectoriaController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+
   Future<Object>? _respuesta;
 
   @override

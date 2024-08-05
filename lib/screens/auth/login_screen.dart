@@ -1,9 +1,7 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/layouts/auth_layout.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -19,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  Future<Object>? _respuesta;
+  Object? _respuesta;
 
   @override
   Widget build(BuildContext context) {
@@ -103,12 +101,28 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    if (_formRegistroKey.currentState!.validate()) {                      
+                    if (_formRegistroKey.currentState!.validate()) {
                       setState(() {
                         _respuesta = loginChef(
-                            _emailController.text, _passwordController.text);                        
-                      });          
-                      Navigator.pushNamed(context, "/inicio");
+                            _emailController.text, _passwordController.text);
+                      });
+
+                      SharedPreferences localStorage =
+                          await SharedPreferences.getInstance();
+
+                      await localStorage.remove('token');
+
+                      _respuesta = await loginChef(
+                          _emailController.text, _passwordController.text);
+
+                      // ignore: avoid_print
+                      print(localStorage.getString('token'));
+
+                      if (localStorage.getString('token') != null) {
+                        // ignore: use_build_context_synchronously
+                        Navigator.pushNamed(context, '/inicio');
+                      }
+
                       // ignore: use_build_context_synchronously
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Stack(
