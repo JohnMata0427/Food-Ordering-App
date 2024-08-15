@@ -137,23 +137,6 @@
 
 
 
-<h3 id="sprint-3">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
-
-<details>
-  <summary>▶️ Deploy</summary>
-
-> <div align="center">
->   <h4>Deployment in Vercel</h4>
->   <img height="50px" src="https://skillicons.dev/icons?i=vercel&theme=dark">
-> </div>
->
-> 🌐 Vercel Deployment URL: https://pedidos-comida-esfot-mobile.vercel.app/
-
-</details>
-
----
-
-
 ### 📲🤳 Release announcement coming soon
 
 ![Release Annoucement Preview](https://github.com/user-attachments/assets/29b393eb-f5ff-46cc-98c9-c74e63ea11f5)
