@@ -112,6 +112,7 @@
   <summary>✅ Consumption of endpoint to view the profile</summary>
   <img src="https://github.com/user-attachments/assets/fd77abbd-6acf-4d82-b314-51bae4188335" alt="View the profile">
 </details>
+
 ---
 
 <h3 id="sprint-2">👩‍🎓 Sprint 2 - Student Module (Mobile)</h3>
@@ -131,6 +132,7 @@
     <img src="https://github.com/user-attachments/assets/4751f582-d064-417d-b17e-4fa2dbe4c18c" alt="Category Snacks">
   </ul>
 </details>
+
 ---
 
 
