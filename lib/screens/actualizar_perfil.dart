@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:food_ordering_app/services/chef_auth.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ActualizarPerfil extends StatefulWidget {
   const ActualizarPerfil({super.key});
@@ -11,7 +14,6 @@ class ActualizarPerfil extends StatefulWidget {
 class _ActualizarPerfilState extends State<ActualizarPerfil> {
   final _formActualizarPerfilKey = GlobalKey<FormState>();
   bool isPasswordVisible = true;
-  // Variables para los datos del chef
 
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _apellidoController = TextEditingController();
@@ -21,6 +23,16 @@ class _ActualizarPerfilState extends State<ActualizarPerfil> {
   final TextEditingController _emailController = TextEditingController();
 
   Future<Object>? _respuesta;
+  File? image;
+  final ImagePicker _picker = ImagePicker();
+
+  Future getImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null)
+      setState(() {
+        image = File(pickedFile.path);
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,11 +69,9 @@ class _ActualizarPerfilState extends State<ActualizarPerfil> {
                 height: 350,
                 fit: BoxFit.cover,
               ),
-              Image.asset(
-                'assets/Samuel_Pig.png',
-                height: 275,
-                fit: BoxFit.cover,
-              ),
+              image != null
+                  ? Image.file(image!)
+                  : Image.asset('assets/perfil.png')
             ],
           ),
           const SizedBox(
@@ -69,6 +79,12 @@ class _ActualizarPerfilState extends State<ActualizarPerfil> {
           ),
           ElevatedButton(
             onPressed: () async {
+              final pickedFile =
+                  await _picker.pickImage(source: ImageSource.gallery);
+              if (pickedFile != null)
+                setState(() {
+                  image = File(pickedFile.path);
+                });
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
@@ -243,7 +259,8 @@ class _ActualizarPerfilState extends State<ActualizarPerfil> {
                                 _telefonoController.text,
                                 _emailController.text,
                                 _especialidadController.text,
-                                _trayectoriaController.text);
+                                _trayectoriaController.text,
+                                );
                           });
                           // ignore: use_build_context_synchronously
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
