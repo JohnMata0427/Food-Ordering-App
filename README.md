@@ -131,9 +131,10 @@
     <img src="https://github.com/user-attachments/assets/4751f582-d064-417d-b17e-4fa2dbe4c18c" alt="Category Snacks">
   </ul>
 </details>
----
 
-/*<h3 id="sprint-3">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
+---
+<!--
+<h3 id="sprint-3">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
 
 <details>
   <summary>▶️ Deploy</summary>
@@ -147,7 +148,9 @@
 
 </details>
 
----*/
+---
+
+-->
 
 ### 📲🤳 Release announcement coming soon
 
