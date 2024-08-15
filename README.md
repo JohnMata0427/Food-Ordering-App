@@ -51,7 +51,7 @@
   > | ![VSCode](https://skillicons.dev/icons?i=vscode&theme=dark)  | Visual Studio Code         |
   > | ![Dart](https://skillicons.dev/icons?i=dart&theme=dark)      | Dart                       |
   > | ![Flutter](https://skillicons.dev/icons?i=flutter&theme=dark)| Flutter                    |
-  > | ![Android](https://skillicons.dev/icons?i=android&theme=dark)| Android Studio (optional)  |
+  > | ![Android](https://skillicons.dev/icons?i=androidstudio&theme=dark)| Android Studio (optional)  |
   
   > - **Project Initialization and Installation Dependencies**
   >   
