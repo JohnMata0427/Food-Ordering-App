@@ -84,7 +84,6 @@
   >     │   ├── screens/            # Pantallas o vistas
   >     │   ├── main.dart           # Archivo principal
   >     │   └── theme/              # Configuración de temas (incluyendo tema oscuro)
-  >     ├── test/                   # Pruebas unitarias
   >     ├── pubspec.yaml            # Configuración de dependencias
   >     ├── .gitignore              # Archivo para ignorar archivos en git
   >     └── README.md               # Documentación del proyecto
