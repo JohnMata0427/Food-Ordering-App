@@ -133,7 +133,7 @@
 </details>
 ---
 
-<h3 id="sprint-4">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
+/*<h3 id="sprint-3">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
 
 <details>
   <summary>▶️ Deploy</summary>
@@ -147,7 +147,7 @@
 
 </details>
 
----
+---*/
 
 ### 📲🤳 Release announcement coming soon
 
