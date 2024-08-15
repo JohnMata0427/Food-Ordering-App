@@ -104,17 +104,36 @@
 
 <h3 id="sprint-1">👨‍🍳 Sprint 1 - Chef Module (Mobile)</h3>
 
+<details>
+  <summary>✅ Endpoint consumption to log in.</summary>
+  <img src="https://github.com/user-attachments/assets/a9256054-7d2e-4eb5-9ff2-5588b2442363" alt="Log in">
+</details>
+<details>
+  <summary>✅ Consumption of endpoint to view the profile</summary>
+  <img src="https://github.com/user-attachments/assets/fd77abbd-6acf-4d82-b314-51bae4188335" alt="View the profile">
+</details>
 ---
 
 <h3 id="sprint-2">👩‍🎓 Sprint 2 - Student Module (Mobile)</h3>
 
+<details>
+  <summary>✅ Consumption of the endpoint to view the categories. </summary>
+  <img src="https://github.com/user-attachments/assets/b1693111-8137-4208-a289-2ad3cff530c6" alt="View the categories.">
+</details>
+<details>
+  <summary>✅ Endpoint consumption to display products by category. </summary>
+  <ul>
+    <li>Lunch Category </li>
+    <img src="https://github.com/user-attachments/assets/ca920e3c-c373-4ea6-8758-df32db867562" alt="Lunch Category">
+    <li>Category Beverages </li>
+    <img src="https://github.com/user-attachments/assets/fd77f52c-e947-4fcd-b4bc-0f79df1ba437" alt="Category Beverages">
+    <li>Category Snacks </li>
+    <img src="https://github.com/user-attachments/assets/4751f582-d064-417d-b17e-4fa2dbe4c18c" alt="Category Snacks">
+  </ul>
+</details>
 ---
 
-<h3 id="sprint-3">🏷️🍛 Sprint 3 - Products and Orders Module (Mobile)</h3>
-
----
-
-<h3 id="sprint-4">🥤🍫 Sprint 4 - Deploy (Mobile)</h3>
+<h3 id="sprint-4">🥤🍫 Sprint 3 - Deploy (Mobile)</h3>
 
 <details>
   <summary>▶️ Deploy</summary>
