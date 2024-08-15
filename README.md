@@ -94,8 +94,10 @@
 
 <details>
   <summary>✅ User Roles</summary>
-> - Students 🧑‍🎓👩‍🎓
-> - Chefs 👨‍🍳👩‍🍳
+<ul>
+  <li>Chefs 👨‍🍳👩‍🍳</li>
+  <li>Students 🧑‍🎓👩‍🎓</li>
+</ul>
 </details>
 
 ---
