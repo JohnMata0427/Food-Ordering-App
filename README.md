@@ -22,7 +22,7 @@
 <details>
   <summary>✅ Definition of requirements and Constraints</summary>
   <ul>
-    <li>The frontend has the following profiles: Cook and Student.</li>
+    <li>The mobile app has the following profiles: Cook and Student.</li>
     <li>There is a backend and a series of public and private APIs available for consumption.</li>
     <li>The Cook profile can:
       <ul>
@@ -39,6 +39,7 @@
       </ul>
     </li>
   </ul>
+
 </details>
 
 <details>
